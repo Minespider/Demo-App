@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <script src="./node_modules/web3/dist/web3.min.js"></script>
+
+</head>
+
+<body class="bbg" ></body>
+
+<body>
+
+    <div class="container">
+
+        <h1>Create Account</h1>
+
+        <h2 id="instructor"></h2>
+
+        <label for="name" id="name6" class="col-lg-2 control-label">Wallet Address</label>
+        <input id="text3">
+
+        <label for="text1" id="name4" class="col-lg-2 control-label">Company Name</label>
+        <h3 id="text1"></h3>
+        <label for="text2" id="name5" class="col-lg-2 control-label">Company Location</label>
+        <h3 id="text2"></h3>
+
+        <img id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
+
+        <label for="name" id="name1" class="col-lg-2 control-label">Company Name</label>
+        <input id="name" type="text">
+
+        <label for="name" id="name2" class="col-lg-2 control-label">Company Location</label>
+        <input id="location" type="text">
+
+        <label for="name" id="name3" class="col-lg-2 control-label">Account Type</label>
+
+        <label for="name" id="name11" class="col-lg-2 control-label">Choose Mine or Buyer</label>
+      <form id="mainForm" name="mainForm">
+        <input type="radio" id="r1" name="typea" value="Mine" />Mine<br />
+        <input type="radio" id="r3" name="typea" value="Buyer" />Buyer<br />
+        <!-- <input type="radio" id="r2" name="typea" value="Certifier" />Certifier<br /> -->
+      </form>
+
+        <button id="button">Make New Account</button>
+
+
+
+        <label for="name" id="name10" class="col-lg-2 control-label">If you are a Certifier a Press here</label>
+        <a href="index1.html" id="href1"><button1 id="button1">Certifier</button1></a>
+
+
+
+
+        <label for="name" id="name7" class="col-lg-2 control-label">Mineral Tonnage Limit</label>
+        <input id="text4">
+
+        <label for="name" id="name8" class="col-lg-2 control-label">Minespider Tokens</label>
+        <input id="text5">
+
+        <label for="name" id="name9" class="col-lg-2 control-label">Owned Data Packets</label>
+        <h2 id="instructor1"></h2>
+
+        <!-- <a class="curent-demo" href="index.html"></a>
+        <a href="index1.html"><button id="button">Make New Account</button></a> -->
+
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+    <script>
+
+        if (typeof web3 !== 'undefined') {
+            web3 = new Web3(web3.currentProvider);
+        } else {
+            // set the provider you want from Web3.providers
+            web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+        }
+
+        web3.eth.defaultAccount = web3.eth.accounts[0];
+
+        var CoursetroContract = web3.eth.contract([
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"indexed": false,
+				"name": "location",
+				"type": "string"
+			}
+		],
+		"name": "Instructor",
+		"type": "event"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_fName",
+				"type": "string"
+			},
+			{
+				"name": "_fLocation",
+				"type": "string"
+			}
+		],
+		"name": "setInstructor",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getInstructor",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+]);
+
+        var Coursetro = CoursetroContract.at('0xcf9be41985b81c2e973543e854c92a05a2c2ab2e');
+
+        var instructorEvent = Coursetro.Instructor();
+
+        instructorEvent.watch(function(error, result){
+            if (!error)
+                {
+
+
+                  if ($("input:radio[name=typea][value=Mine]:checked")) {
+                     result[2] = $("input:radio[name=typea]:checked").val();
+                     //result[2] = "Mine";
+                     //$("#loader").show();
+
+                  }else if ($("input:radio[name=typea][value=Certifier]:checked")) {
+                     result[2] = $("input:radio[name=typea]:checked").val();
+                     //result[2] = "Certifier";
+                  }else if ($("input:radio[name=typea][value=Buyer]:checked")) {
+                    result[2] = $("input:radio[name=typea]:checked").val();
+                    //result[2] = "Buyer";
+                  }
+
+
+
+
+                    if (result[2] == "Mine") {
+
+                      $("body").css("background-image", "url('backgroundred.png')");
+
+                      $("#loader").hide();
+
+                      //$("#instructor").html(result.args.name + ' ' + result.args.location+ ' '+ result[2]);
+
+                      $("#instructor").html(result[2]);
+
+                      $("#text1").html(result.args.name);
+                      $("#text2").html(result.args.location);
+
+
+
+                    }
+                    // else if (result[2] == "Certifier") {
+                    //
+                    //   // $("body").css("background-image", "url('backgroundpng.png')");
+                    //   //
+                    //   // $("#loader").hide();
+                    //   // $("#instructor").html(result[2]);
+                    //   // $("#text1").hide();
+                    //   // $("#text2").hide();
+                    //   // $("#name4").hide();
+                    //   // $("#name5").hide();
+                    //   //
+                    //   // $("#name6").hide();
+                    //   // $("#text3").hide();
+                    //   // $("#name7").hide();
+                    //   // $("#text4").hide();
+                    //   // $("#name8").hide();
+                    //   // $("#text5").hide();
+                    //   // $("#instructor1").hide();
+                    //   // $("#name9").hide();
+                    //
+                    //
+                    // }
+                    else if (result[2] == "Buyer") {
+
+                      $("body").css("background-image", "url('purplepolygon.jpg')");
+
+                      $("#loader").hide();
+                      $("#instructor").html(result[2]);
+
+                      $("#text1").html(result.args.name);
+                      $("#text2").html(result.args.location);
+
+                      //$("#text1").hide();
+                      //$("#text2").hide();
+                      //$("#name4").hide();
+                      //$("#name5").hide();
+                    }
+
+
+
+                } else {
+                    $("#loader").hide();
+                    console.log(error);
+                }
+        });
+
+
+
+        $("#instructor").hide();
+        $("#name4").hide();
+        $("#name5").hide();
+        $("#text1").hide();
+        $("#text2").hide();
+
+        $("#name6").hide();
+        $("#text3").hide();
+        $("#name7").hide();
+        $("#text4").hide();
+        $("#name8").hide();
+        $("#text5").hide();
+
+        $("#instructor1").hide();
+        $("#name9").hide();
+
+
+        $("#button").click(function() {
+
+
+          $("#loader").show();
+
+          $("#name").hide();
+          $("#location").hide();
+          $("#name1").hide();
+          $("#name2").hide();
+          $("#name3").hide();
+          $("#mainForm").hide();
+          $("#button").hide();
+          $("#name10").hide();
+          $("#href1").hide();
+
+
+          $("#instructor").show();
+          $("#name4").show();
+          $("#name5").show();
+          $("#text1").show();
+          $("#text2").show();
+
+          $("#name6").show();
+          $("#text3").show();
+          $("#name7").show();
+          $("#text4").show();
+          $("#name8").show();
+          $("#text5").show();
+
+          $("#instructor1").show();
+          $("#name9").show();
+
+          $("#name11").hide();
+
+
+           Coursetro.setInstructor($("#name").val(), $("#location").val());
+       });
+
+
+       $("#button1").click(function() {
+
+         $("#loader").show();
+
+          Coursetro.setInstructor($("#name").val(), $("#location").val());
+      });
+
+
+
+    </script>
+
+</body>
+</html>
