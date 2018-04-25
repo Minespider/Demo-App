@@ -20,29 +20,42 @@
 
     <div class="container">
 
-        <h1>Mine creates data packets</h1>
+        <h1>Create Account</h1>
 
-        <!-- <h2 id="instructor"></h2> -->
+        <h2 id="instructor"></h2>
 
-        <!-- <label for="name" id="name6" class="col-lg-2 control-label">Wallet Address</label>
-        <h3 id="text3"></h3> -->
+        <label for="name" id="name6" class="col-lg-2 control-label">Wallet Address</label>
+        <!-- <input id="text3"> -->
+        <h3 id="text3"></h3>
 
-        <label for="text1" id="name4" class="col-lg-2 control-label">Buyer Address</label>
-        <input id="name1" type="text">
-        <label for="text2" id="name5" class="col-lg-2 control-label">Tonnage to sell</label>
-        <input id="name2" type="text">
+        <label for="text1" id="name4" class="col-lg-2 control-label">Company Name</label>
+        <h3 id="text1"></h3>
+        <label for="text2" id="name5" class="col-lg-2 control-label">Company Location</label>
+        <h3 id="text2"></h3>
 
         <img id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
 
-        <!-- <label for="name" id="name1" class="col-lg-2 control-label">Company Name</label>
+        <label for="name" id="name1" class="col-lg-2 control-label">Company Name</label>
         <input id="name" type="text">
 
         <label for="name" id="name2" class="col-lg-2 control-label">Company Location</label>
-        <input id="location" type="text"> -->
+        <input id="location" type="text">
+
+        <label for="name" id="name3" class="col-lg-2 control-label">Account Type</label>
+
+        <label for="name" id="name11" class="col-lg-2 control-label">Choose Mine or Buyer</label>
+      <form id="mainForm" name="mainForm">
+        <input type="radio" id="r1" name="typea" value="Mine" />Mine<br />
+        <input type="radio" id="r3" name="typea" value="Buyer" />Buyer<br />
+        <!-- <input type="radio" id="r2" name="typea" value="Certifier" />Certifier<br /> -->
+      </form>
+
+        <button id="button">Make New Account</button>
 
 
-        <!-- <label for="name" id="name10" class="col-lg-2 control-label">If you are a Certifier a Press here</label>
-        <a href="index1.html" id="href1"><button id="button1">Certifier</button></a> -->
+
+        <label for="name" id="name10" class="col-lg-2 control-label">If you are a Certifier a Press here</label>
+        <a href="index1.html" id="href1"><button id="button1">Certifier</button></a>
 
 
 
@@ -50,14 +63,20 @@
         <label for="name" id="name7" class="col-lg-2 control-label">Mineral Tonnage Limit</label>
         <input id="textbox4" type="text" readonly>
 
-        <!-- <label for="name" id="name8" class="col-lg-2 control-label">Minespider Tokens</label>
+        <label for="name" id="name8" class="col-lg-2 control-label">Minespider Tokens</label>
         <input id="text5" readonly>
 
         <label for="name" id="name9" class="col-lg-2 control-label">Owned Data Packets</label>
         <h2 id="instructor1"></h2>
 
-        <a href="index2.html"><button id="buttonC">Create</button></a> -->
+        <!-- <button id="buttonC">Create</button> -->
 
+        <a href="index2.html"><button id="buttonCM">Create</button></a>
+
+        <a href="index3.html"><button id="buttonCB">Create</button></a>
+
+        <!-- <a class="curent-demo" href="index.html"></a>
+        <a href="index1.html"><button id="button">Make New Account</button></a> -->
 
 
     </div>
@@ -139,21 +158,85 @@
             if (!error)
                 {
 
+
+                  if ($("input:radio[name=typea][value=Mine]:checked")) {
+                     result[2] = $("input:radio[name=typea]:checked").val();
+                     //result[2] = "Mine";
+                     //$("#loader").show();
+
+                  }else if ($("input:radio[name=typea][value=Certifier]:checked")) {
+                     result[2] = $("input:radio[name=typea]:checked").val();
+                     //result[2] = "Certifier";
+                  }else if ($("input:radio[name=typea][value=Buyer]:checked")) {
+                    result[2] = $("input:radio[name=typea]:checked").val();
+                    //result[2] = "Buyer";
+                  }
+
+
+
+
+                    if (result[2] == "Mine") {
+
+                      $("#buttonCB").hide();
+
                       $("body").css("background-image", "url('backgroundred.png')");
 
                       $("#loader").hide();
 
                       //$("#instructor").html(result.args.name + ' ' + result.args.location+ ' '+ result[2]);
 
-                      // $("#instructor").html(result[2]);
-                      //
-                      // $("#text1").html(result.args.name);
-                      // $("#text2").html(result.args.location);
-                      // $("#text3").html("0x7a22f9f1aD87194BdB988D9acb5A86c0a97989b8");
-                      // //$("#text3").html(result[3]);
-                      //
-                      $("#textbox4").val();
-                      // $("#text5").val("100");
+                      $("#instructor").html(result[2]);
+
+                      $("#text1").html(result.args.name);
+                      $("#text2").html(result.args.location);
+                      $("#text3").html("0x7a22f9f1aD87194BdB988D9acb5A86c0a97989b8");
+                      //$("#text3").html(result[3]);
+
+                      $("#textbox4").val("0");
+                      $("#text5").val("100");
+
+
+                    }
+                    // else if (result[2] == "Certifier") {
+                    //
+                    //   // $("body").css("background-image", "url('backgroundpng.png')");
+                    //   //
+                    //   // $("#loader").hide();
+                    //   // $("#instructor").html(result[2]);
+                    //   // $("#text1").hide();
+                    //   // $("#text2").hide();
+                    //   // $("#name4").hide();
+                    //   // $("#name5").hide();
+                    //   //
+                    //   // $("#name6").hide();
+                    //   // $("#text3").hide();
+                    //   // $("#name7").hide();
+                    //   // $("#text4").hide();
+                    //   // $("#name8").hide();
+                    //   // $("#text5").hide();
+                    //   // $("#instructor1").hide();
+                    //   // $("#name9").hide();
+                    //
+                    //
+                    // }
+                    else if (result[2] == "Buyer") {
+
+                      $("#buttonCM").hide();
+
+                      $("body").css("background-image", "url('purplepolygon.jpg')");
+
+                      $("#loader").hide();
+                      $("#instructor").html(result[2]);
+
+                      $("#text1").html(result.args.name);
+                      $("#text2").html(result.args.location);
+                      $("#text3").html("0x8b33f0e2be87194BdB988D9acb5A86c0a97989b8");
+
+                      //$("#text1").hide();
+                      //$("#text2").hide();
+                      //$("#name4").hide();
+                      //$("#name5").hide();
+                    }
 
 
 
@@ -164,14 +247,105 @@
         });
 
 
-        $("#buttonCM").click(function() {
+
+        $("#instructor").hide();
+        $("#name4").hide();
+        $("#name5").hide();
+        $("#text1").hide();
+        $("#text2").hide();
+
+        $("#name6").hide();
+        $("#text3").hide();
+        $("#name7").hide();
+        $("#textbox4").hide();
+        $("#name8").hide();
+        $("#text5").hide();
+
+        $("#instructor1").hide();
+        $("#name9").hide();
+
+        $("#buttonCM").hide();
+        $("#buttonCB").hide();
+
+
+
+
+
+
+
+
+        $("#button").click(function() {
+
 
           $("#loader").show();
 
-          $("#textbox4").val("0");
+          $("#name").hide();
+          $("#location").hide();
+          $("#name1").hide();
+          $("#name2").hide();
+          $("#name3").hide();
+          $("#mainForm").hide();
+          $("#button").hide();
+          $("#name10").hide();
+          $("#href1").hide();
 
-           //Coursetro.setInstructor($("#name").val(), $("#location").val());
+
+          $("#instructor").show();
+          $("#name4").show();
+          $("#name5").show();
+          $("#text1").show();
+          $("#text2").show();
+
+          $("#name6").show();
+          $("#text3").show();
+          $("#name7").show();
+          $("#textbox4").show();
+          $("#name8").show();
+          $("#text5").show();
+
+          $("#instructor1").show();
+          $("#name9").show();
+
+          $("#name11").hide();
+
+          $("#buttonCM").show();
+          $("#buttonCB").show();
+
+
+          // $content = file_get_contents(url);
+          // $arrEx = explode(" ", $content);
+          //
+          // $("#bitcoin").val() = arrEx[0];
+
+           Coursetro.setInstructor($("#name").val(), $("#location").val());
        });
+
+
+       $("#button1").click(function() {
+
+         $("#loader").show();
+
+          Coursetro.setInstructor($("#name").val(), $("#location").val());
+      });
+
+
+      $("#buttonCM").click(function() {
+
+        $("#loader").show();
+
+        $("#textbox4").val();
+
+         //Coursetro.setInstructor($("#name").val(), $("#location").val());
+     });
+
+     $("#buttonCB").click(function() {
+
+       $("#loader").show();
+
+       //$("#textbox4").val("0");
+
+        //Coursetro.setInstructor($("#name").val(), $("#location").val());
+    });
 
 
 
