@@ -48,7 +48,9 @@
 
 
         <label for="name" id="name7" class="col-lg-2 control-label">Mineral Tonnage Limit</label>
-        <input id="textbox4" type="text" readonly>
+        <!-- <input id="textbox4" type="text" readonly> -->
+        <h3 id="textbox4"></h3>
+
 
         <!-- <label for="name" id="name8" class="col-lg-2 control-label">Minespider Tokens</label>
         <input id="text5" readonly>
@@ -131,7 +133,7 @@
 	}
 ]);
 
-        var Coursetro = CoursetroContract.at('0xbee6ea3d9feb5578ba8a357e00880fbcfa963111');
+        var Coursetro = CoursetroContract.at('0x336f1f1080f206e80d7150596905e393dc09fa0f');
 
         var instructorEvent = Coursetro.Instructor();
 
@@ -143,6 +145,10 @@
 
                       $("#loader").hide();
 
+
+                      $textbox4 = $_POST['textbox4'];
+                      $("#textbox4").val();
+
                       //$("#instructor").html(result.args.name + ' ' + result.args.location+ ' '+ result[2]);
 
                       // $("#instructor").html(result[2]);
@@ -152,7 +158,7 @@
                       // $("#text3").html("0x7a22f9f1aD87194BdB988D9acb5A86c0a97989b8");
                       // //$("#text3").html(result[3]);
                       //
-                      $("#textbox4").val();
+                      //$("#textbox4").val();
                       // $("#text5").val("100");
 
 
@@ -164,14 +170,15 @@
         });
 
 
-        $("#buttonCM").click(function() {
-
-          $("#loader").show();
-
-          $("#textbox4").val("0");
-
-           //Coursetro.setInstructor($("#name").val(), $("#location").val());
-       });
+       //  $("#buttonCM").click(function() {
+       //
+       //    $("#loader").show();
+       //
+       //    //$("#index2.html").html($("#textbox4").val());
+       //    $("#textbox4").val();
+       //
+       //     //Coursetro.setInstructor($("#name").val(), $("#location").val());
+       // });
 
 
 

@@ -61,19 +61,45 @@
 
 
         <label for="name" id="name7" class="col-lg-2 control-label">Mineral Tonnage Limit</label>
-        <input id="textbox4" type="text" readonly>
+
+      <form action="index2.php" type="get">
+        <!-- <input id="textbox4" type="text" name="Nu" readonly> -->
+        <input id="textbox4" type="text" name="Minto" readonly>
 
         <label for="name" id="name8" class="col-lg-2 control-label">Minespider Tokens</label>
         <input id="text5" readonly>
 
+        <input type="submit" value="Create" id="buttonCM" name="submit">
+      </form>
+
+
+
+
+      <form action="index3.html" type="get">
+        <!-- <input id="textbox4" type="text" name="Nu" readonly> -->
+        <input id="textbox5" type="text" name="Minto2" readonly>
+
+        <label for="name" id="name12" class="col-lg-2 control-label">Minespider Tokens</label>
+        <input id="textbox6" readonly>
+
+        <input type="submit" value="Create" id="buttonCB" name="submit">
+      </form>
+
+
+
+
         <label for="name" id="name9" class="col-lg-2 control-label">Owned Data Packets</label>
         <h2 id="instructor1"></h2>
 
+
+
+
+
         <!-- <button id="buttonC">Create</button> -->
 
-        <a href="index2.html"><button id="buttonCM">Create</button></a>
+        <!-- <a href="index2.html"><button id="buttonCM">Create</button></a> -->
 
-        <a href="index3.html"><button id="buttonCB">Create</button></a>
+        <!-- <a href="index3.html"><button id="buttonCB">Create</button></a> -->
 
         <!-- <a class="curent-demo" href="index.html"></a>
         <a href="index1.html"><button id="button">Make New Account</button></a> -->
@@ -150,7 +176,7 @@
 	}
 ]);
 
-        var Coursetro = CoursetroContract.at('0xbee6ea3d9feb5578ba8a357e00880fbcfa963111');
+        var Coursetro = CoursetroContract.at('0x336f1f1080f206e80d7150596905e393dc09fa0f');
 
         var instructorEvent = Coursetro.Instructor();
 
@@ -195,6 +221,11 @@
                       $("#textbox4").val("0");
                       $("#text5").val("100");
 
+                      $("#textbox5").hide();
+
+                      $("#name12").hide();
+                      $("#textbox6").hide();
+
 
                     }
                     // else if (result[2] == "Certifier") {
@@ -232,6 +263,14 @@
                       $("#text2").html(result.args.location);
                       $("#text3").html("0x8b33f0e2be87194BdB988D9acb5A86c0a97989b8");
 
+                      $("#textbox5").val("30");
+                      $("#textbox6").val("10");
+
+                      $("#textbox4").hide();
+
+                      $("#name8").hide();
+                      $("#text5").hide();
+
                       //$("#text1").hide();
                       //$("#text2").hide();
                       //$("#name4").hide();
@@ -266,6 +305,10 @@
 
         $("#buttonCM").hide();
         $("#buttonCB").hide();
+
+        $("#textbox5").hide();
+        $("#name12").hide();
+        $("#textbox6").hide();
 
 
 
@@ -311,6 +354,11 @@
           $("#buttonCM").show();
           $("#buttonCB").show();
 
+          $("#textbox5").show();
+
+          $("#name12").show();
+          $("#textbox6").show();
+
 
           // $content = file_get_contents(url);
           // $arrEx = explode(" ", $content);
@@ -329,14 +377,15 @@
       });
 
 
-      $("#buttonCM").click(function() {
-
-        $("#loader").show();
-
-        $("#textbox4").val();
-
-         //Coursetro.setInstructor($("#name").val(), $("#location").val());
-     });
+     //  $("#buttonCM").click(function() {
+     //
+     //    $("#loader").show();
+     //
+     //    $("#textbox4").val();
+     //    //$("#index2.html").html($("#textbox4").val());
+     //
+     //     //Coursetro.setInstructor($("#name").val(), $("#location").val());
+     // });
 
      $("#buttonCB").click(function() {
 

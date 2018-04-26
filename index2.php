@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Document</title>
+
+     <link rel="stylesheet" type="text/css" href="main.css">
+
+     <!-- <url= "http://blockchain.info/q/newkey"> -->
+
+     <script src="./node_modules/web3/dist/web3.min.js"></script>
+
+ </head>
+
+ <body class="bbg" ></body>
+
+ <body>
+
+     <!-- <div class="container"> -->
+
+         <h1>Mine creates data packets</h1>
+
+
+
+
+         <!-- <h2 id="instructor"></h2> -->
+
+         <!-- <label for="name" id="name6" class="col-lg-2 control-label">Wallet Address</label>
+         <h3 id="text3"></h3> -->
+
+         <label for="text1" id="name4" class="col-lg-2 control-label">Buyer Address</label>
+         <input id="name1" type="text">
+         <label for="text2" id="name5" class="col-lg-2 control-label">Tonnage to sell</label>
+         <input id="name2" type="text">
+
+         <img id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
+
+         <!-- <label for="name" id="name1" class="col-lg-2 control-label">Company Name</label>
+         <input id="name" type="text">
+
+         <label for="name" id="name2" class="col-lg-2 control-label">Company Location</label>
+         <input id="location" type="text"> -->
+
+
+         <!-- <label for="name" id="name10" class="col-lg-2 control-label">If you are a Certifier a Press here</label>
+         <a href="index1.html" id="href1"><button id="button1">Certifier</button></a> -->
+
+
+
+
+         <label for="name" id="name7" class="col-lg-2 control-label">Mineral Tonnage Limit</label>
+         <h3 id="textbox4"></h3>
+         <!-- <input id="textbox4" type="text" readonly> -->
+
+
+
+
+
+         <!-- <label for="name" id="name8" class="col-lg-2 control-label">Minespider Tokens</label>
+         <input id="text5" readonly>
+
+         <label for="name" id="name9" class="col-lg-2 control-label">Owned Data Packets</label>
+         <h2 id="instructor1"></h2>
+
+         <a href="index2.html"><button id="buttonC">Create</button></a> -->
+
+
+
+     <!-- </div> -->
+
+     <script LANGUAGE="JavaScript">
+
+
+            function getParams(){
+            var idx = document.URL.indexOf('?');
+            var params = new Array();
+            if (idx != -1) {
+            var pairs = document.URL.substring(idx+1, document.URL.length).split('&');
+            for (var i=0; i<pairs.length; i++){
+            nameVal = pairs[i].split('=');
+            params[nameVal[0]] = nameVal[1];
+            }
+            }
+            return params;
+            }
+            params = getParams();
+            MinTon = unescape(params["Minto"]);
+
+            //$("#textbox4").val() = MinTon;
+            document.write(MinTon + "<br>");
+
+
+
+
+</script>
+
+ </body>
+ </html>
