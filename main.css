@@ -16,6 +16,7 @@ input {
     width: 50%;
     margin-bottom: 1em;
 }
+
 button {
     margin: 2em 0;
     padding: 1em 4em;
@@ -46,5 +47,10 @@ button1 {
 
 .bbg {
   background-image: url('backgroundred.png');
+  /* background-repeat: no-repeat; */
+}
+
+.bbf {
+  background-image: url('purplepolygon.jpg');
   /* background-repeat: no-repeat; */
 }
